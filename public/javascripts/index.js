@@ -7,7 +7,7 @@ jQuery(function() {
 
 	function list() {
 		jQuery.getJSON('/list', function(data) {
-			jQuery(body).text(JSON.stringify(data));
+			jQuery('body').text(JSON.stringify(data));
 		});
 	}
 

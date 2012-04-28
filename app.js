@@ -31,7 +31,7 @@ app.configure('production', function(){
 
 app.get('/', routes.index);
 app.get('/list', function(req, res) {
-	res.send('{"name":"tajima"}')
+	res.send(JSON.stringify([{name:'tajima'}, {name:'hoge'}, {name:'piyo'}]))
 });
 
 app.listen(3000, function(){
