@@ -7,7 +7,10 @@ jQuery(function() {
 
 	function list() {
 		jQuery.getJSON('/list', function(data) {
-			jQuery('body').text(JSON.stringify(data));
+			jQuery.each(data, function() {
+				jQuery('<div />', { text : this.name })
+					.appendTo('body');
+			});
 		});
 	}
 
