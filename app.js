@@ -30,9 +30,7 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
-app.get('/list', function(req, res) {
-	res.send(JSON.stringify([{name:'tajima'}, {name:'hoge'}, {name:'piyo'}]))
-});
+app.get('/list', routes.api.list);
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
