@@ -32,6 +32,20 @@ app.configure('production', function(){
 app.get('/', routes.index);
 app.get('/list', routes.api.list);
 
+app.get('/testmongo', function(req, res) {
+	var Db = require('mongodb').Db,
+		Server = require('mongodb').Server,
+		client = new require('mongodb').Db('nameko', new Server("127.0.0.1", 27017, {}));
+
+	client.open(function(err, p_client) {
+		client.collection('posts', function(err, collection) {
+			collection.find().toArray(function(err, results) {
+				res.send(JSON.stringify(results));
+			});
+		});
+	});
+});
+
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
