@@ -4,7 +4,7 @@ README
 ## 1) インストール
 
 ### 1.1) Express
-  $ sudo npm install -g express
+    $ sudo npm install -g express
 
 ### 1.2) Mongo
 
@@ -14,7 +14,8 @@ README
     $ sudo mkdir -p data/db
     $ sudo chown `id -u` /data/db
     $ sudo npm install mongodb
-  試しにインサート
+
+    # 試しにインサート
     $ mongo
     MongoDB shell version: 2.0.4
     connecting to: test
