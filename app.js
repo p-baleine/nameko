@@ -31,9 +31,7 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
-app.get('/list', function(req, res) {
-	res.send(JSON.stringify([{name:'tajima'}, {name:'hoge'}, {name:'piyo'}]))
-});
+app.get('/list', routes.api.list);
 
 app.get('/testmongo', function(req, res) {
 	var Db = require('mongodb').Db,
