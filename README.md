@@ -2,19 +2,17 @@ README
 ======
 
 ## 1) インストール
+    $ cd <nameko>
+    $ npm install
 
-### 1.1) Express
-    $ sudo npm install -g express
+### 1.1) Mongo
 
-### 1.2) Mongo
-
-#### 1.2.1) Macの場合
+#### 1.1.1) Macの場合
     $ sudo brew update
     $ sudo brew install mongodb
     $ sudo mkdir -p data/db
     $ sudo chown `id -u` /data/db
     $ sudo npm install mongodb
-
     # 試しにインサート
     $ mongo
     MongoDB shell version: 2.0.4
