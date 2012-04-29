@@ -4,6 +4,7 @@
  */
 
 var express = require('express')
+  ,loggerOption = require('./lib/loggerOption').getOption()
   ,routes = require('./routes');
 
 var app = module.exports = express.createServer();
@@ -13,13 +14,16 @@ var app = module.exports = express.createServer();
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.use(express.logger(loggerOption));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
   app.use(express.static(__dirname + '/../client/public'));
 });
-console.log(__dirname + '/../client/public');
+
+console.log('hahaha');
+
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
