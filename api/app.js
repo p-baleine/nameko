@@ -4,7 +4,8 @@
  */
 
 var express = require('express')
-  ,loggerOption = require('./lib/loggerOption').getOption()
+  ,loggerOption = require('./lib/loggerHelper').getOption()
+  ,syslog = require('./lib/loggerHelper').syslog
   ,routes = require('./routes');
 
 var app = module.exports = express.createServer();
@@ -22,7 +23,6 @@ app.configure(function(){
   app.use(express.static(__dirname + '/../client/public'));
 });
 
-console.log('hahaha');
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
@@ -42,6 +42,7 @@ app.get('/testmongo', function(req, res) {
 		Server = require('mongodb').Server,
 		client = new require('mongodb').Db('nameko', new Server("127.0.0.1", 27017, {}));
 
+	syslog('hahaha');
 	client.open(function(err, p_client) {
 		client.collection('posts', function(err, collection) {
 			collection.find().toArray(function(err, results) {
