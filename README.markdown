@@ -26,7 +26,6 @@ README
     { "_id" : ObjectId("4f9baa6c3b8af52f7fe015d3"), "name" : "hoge" }
 
 ### 1.2) 起動
-    $ node install . # apiとclientで
     $ cake serve
 
 ## 2) 参考サイト

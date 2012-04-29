@@ -20,8 +20,8 @@
     > db.posts.findOne()
     { "_id" : ObjectId("4f9baa6c3b8af52f7fe015d3"), "name" : "hoge" }
 
-** 起動
-    $ cake serve
+** Stitch
+クライアントMVCはSpine
 
 * 参考サイト
  - REST https://github.com/visionmedia/express-resource

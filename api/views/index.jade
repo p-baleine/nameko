@@ -1,0 +1,27 @@
+!!!
+html
+  head
+    title= title
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+    script(src='/application.js')
+    script()
+      var jQuery  = require("jqueryify");
+      var exports = this;
+      jQuery(function(){
+        var App = require("index");
+        exports.app = new App({el: $("body")});      
+
+
+        // apiと疎通できるかな
+        $("<button />", {
+          text: "list",
+          click: function() {
+            $.getJSON("/list", function(data) {
+              $.each(data, function() {
+                $("<div />", { text: this.name }).appendTo("body");
+              });
+            });
+          }
+        }).appendTo("body");
+      });
+body

@@ -4,7 +4,7 @@
  */
 
 var express = require('express')
-  , routes = require('./routes');
+  ,routes = require('./routes');
 
 var app = module.exports = express.createServer();
 
@@ -17,9 +17,9 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-  app.use(require('connect-assets')());
+  app.use(express.static(__dirname + '/../client/public'));
 });
-
+console.log(__dirname + '/../client/public');
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
