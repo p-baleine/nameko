@@ -5,6 +5,9 @@ var AccessLog = new mongoose.Schema({
     remoteAddr: String
     ,date: Date
     ,method: String
+    ,status: String
+	,referrer: String
+	,ua: String
 });
 
 var pattern = /(\S+)\s-\s-\s\[([^\]]+)\]\s"([^"]+)"\s(\S+)\s(\S+)\s"([^"]+)"\s"([^"]+)"/;
@@ -19,6 +22,9 @@ exports.getOption = function() {
 			log.remoteAddr = matches[1];
 			log.date = matches[2];
 			log.method = matches[3];
+			log.status = matches[4];
+			log.referrer = matches[5];
+			log.ua = matches[6];
 
 			log.save();
 		}
