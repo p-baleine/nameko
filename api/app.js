@@ -4,7 +4,8 @@
  */
 
 var express = require('express')
-  ,loggerOption = require('./lib/loggerOption').getOption()
+  ,loggerOption = require('./lib/loggerHelper').getOption()
+  ,syslog = require('./lib/loggerHelper').syslog
   , Resource = require('express-resource');
 
 var app = module.exports = express.createServer();
@@ -31,8 +32,7 @@ app.configure('production', function(){
 });
 
 // Routes
-
-app.resource('post', require('./routes/post'));
+app.resource('posts', require('./routes/post'));
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

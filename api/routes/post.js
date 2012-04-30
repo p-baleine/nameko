@@ -1,3 +1,4 @@
+var postsCtlr = require('../lib/postsCtlr.js');
 
 // GET
 exports.index = function(req, res) {
@@ -20,7 +21,9 @@ exports.index = function(req, res) {
 
 // POST
 exports.create = function(req, res){
-  res.send('create forum');
+	var body = req.body;
+	postsCtlr.createPosts(body.user_name, body.content);
+	this.index;
 };
 
 exports.show = function(req, res){
@@ -33,7 +36,7 @@ exports.edit = function(req, res){
 
 // PUT
 exports.update = function(req, res){
-  res.send('update forum ' + req.params.forum);
+  res.send('update forum ' + req.params.post);
 };
 
 // DELETE
