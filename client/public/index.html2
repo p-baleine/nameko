@@ -11,22 +11,24 @@
     jQuery(function(){
       var App = require("index");
       exports.app = new App({el: $("body")});      
-
-
-      # apiと疎通できるかな
-      $("<button />",
-        text: "list"
-        click: ->
-          $.getJSON "/list", (data) ->
-            $.each data, () ->
-              $("<div />", text: @name).appendTo "body"
-      ).appendTo "body"
-
     });
   </script>
   
-  <!-- Getting started script - should be removed -->
-  <script src="http://maccman-spine.herokuapp.com/start.js" type="text/javascript" charset="utf-8"></script>
 </head>
-<body></body>
+<body>
+  <div id="views">
+    <div id="posts">
+      <h1>掲示板</h1>
+
+      <form>
+        <div><input name="user_name" type="text" /></div>
+        <div><textarea name="content"></textarea></div>
+        <div><input type="submit" /></div>
+      </form>
+
+      <div id="items"></div>
+        
+    </div>
+  </div>
+</body>
 </html>
