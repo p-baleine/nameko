@@ -10,7 +10,7 @@ var Posts = new mongoose.Schema({
 
 
 
-exports.createPosts = function(userName, content) {
+exports.createPosts = function(userName, content, fn) {
 	
 	var model = conn.model('post', Posts),
 	modelPosts = new model();
@@ -22,8 +22,14 @@ exports.createPosts = function(userName, content) {
 	modelPosts.insertTs = insertTs;
 	modelPosts.updateTs = insertTs;
 	
-	console.log(modelPosts);
-	modelPosts.save();
+	modelPosts.save(function(err) {
+		if(err) {
+			fn(false);
+		}
+		else {
+			fn(modelPosts._id);
+		}
+	});
 	
-	return "test";
+	return true;
 }

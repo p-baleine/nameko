@@ -4,6 +4,7 @@
  */
 
 var express = require('express')
+  ,routes = require('./routes')
   ,loggerOption = require('./lib/loggerHelper').getOption()
   ,syslog = require('./lib/loggerHelper').syslog
   , Resource = require('express-resource');
@@ -31,6 +32,8 @@ app.configure('production', function(){
 });
 
 // Routes
+
+app.get('/', routes.index);
 app.resource('posts', require('./routes/post'));
 
 app.listen(3000, function(){
