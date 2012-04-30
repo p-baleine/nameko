@@ -22,8 +22,17 @@ exports.index = function(req, res) {
 // POST
 exports.create = function(req, res){
 	var body = req.body;
-	postsCtlr.createPosts(body.user_name, body.content);
-	this.index;
+	postsCtlr.createPosts(body.user_name, body.content, function(_id) {
+		if(!_id) {
+			res.send({res: false});
+		}
+		else {
+			res.send({
+				res: true,
+				data: { _id: _id }
+			});
+		}
+	});
 };
 
 exports.show = function(req, res){
