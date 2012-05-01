@@ -20,7 +20,7 @@ class StatusApp extends Spine.Controller
 
     constructor: ->
         super
-        Status.bind('create', @addOne)
+        Status.bind('save', @addOne)
         Status.bind('refresh', @addAll)
         Status.fetch()
 
