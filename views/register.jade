@@ -1,0 +1,25 @@
+#views.container
+  h2 Register
+  - if ('undefined' !== typeof errors && errors.length)
+    ul#errors
+      - each error in errors
+        li.error= error
+  form.form-horizontal(action='/register', method='POST')
+    fieldset
+      div#Login.control-group
+        label.control-label(for=everyauth.password.loginFormFieldName) Email
+        div.controls
+          input.input-xlarge(type='text', name=everyauth.password.loginFormFieldName, value=userParams[everyauth.password.loginFormFieldName])
+    
+      div#password.control-group
+        label.control-label(for=everyauth.password.passwordFormFieldName) パスワード
+        div.controls
+          input.input-xlarge(type='password', name=everyauth.password.passwordFormFieldName)
+
+      div#name.control-group
+        label.control-label(for='name') 名前
+        div.controls
+          input.input-xlarge(type='text', name='name')
+
+      div#submit
+        button.btn.btn-primary(type='submit') 登録

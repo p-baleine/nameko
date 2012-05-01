@@ -1,0 +1,13 @@
+div#views.container
+  div#posts
+    if everyauth.user
+      form.form-horizontal
+        fieldset
+          div.control-group
+            label.control-label(for='input02') 内容
+            div.controls
+              textarea#input02.input-xlarge
+  
+          button.btn.btn-primary(type='submit') 投稿
+
+    div#items

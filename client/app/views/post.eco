@@ -1,5 +1,0 @@
-<%= console.log(this) %>
-<div class="post">
-  <div class="user_name"><%= @user_name %></div>
-  <div class="content"><%= @content %></div>
-</div>
