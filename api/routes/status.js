@@ -1,4 +1,3 @@
-var postsCtlr = require('../models/postsCtlr.js');
 
 // GET
 exports.index = function(req, res) {
@@ -22,16 +21,20 @@ exports.index = function(req, res) {
 // POST
 exports.create = function(req, res){
 	var body = req.body;
-	postsCtlr.createPosts(body.user_name, body.content, function(_id) {
-		if(!_id) {
-			res.header()
+	
+	modelPosts.user_name = body.userName;
+	modelPosts.content = body.content;
+	
+	Status.save(function(err) {
+		if(err) {
+//			res.header()
 			res.send({res: false});
 		}
 		else {
 			res.send({
 				res: true,
-				data: { _id: _id }
-			});
+				data: { id: Status.id }
+			})
 		}
 	});
 };
