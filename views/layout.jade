@@ -13,6 +13,7 @@ html
       var exports = this;
       jQuery(function(){
         var App = require("index");
+        App.user = '#{everyauth.user ? everyauth.user._id : null}';
         exports.app = new App({el: $("body")});
       });
   body

@@ -7,8 +7,13 @@ class Statuses extends Spine.Controller
         super
 
     render: =>
-        @log(@item)
-        @html require('views/status')(@item)
+        @html require('views/status')(@)
+
+    helper:
+        isMine: (item) ->
+            console.log(require('index').user)
+            console.log(item.user._id)
+            require('index').user is item.user._id
 
 class StatusApp extends Spine.Controller
     events:
