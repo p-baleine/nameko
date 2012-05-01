@@ -29,7 +29,7 @@ exports.create = function(req, res){
 		var result;
 
 		if(err) {
-			res.send({ msg : err.errors }, 500);
+			res.send({ msg : err.errors }, 999);
 		} else {
 			status = status.toObject();
 			status.user = user;

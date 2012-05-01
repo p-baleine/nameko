@@ -10,8 +10,7 @@ var express = require('express'),
 	Resource = require('express-resource'),
 	models = require('./models');
 
-var everyauth = require('express'),
-	mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	mongooseAuth = require('mongoose-auth');
 
