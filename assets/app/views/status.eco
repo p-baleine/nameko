@@ -1,4 +1,16 @@
 <div class="status span12">
-  <h2 class="user_name"><%= @user?.name %></h2>
-  <div class="content"><%= @content %></div>
+  <div>
+    <strong class="user_name"><%= @user?.name %></strong>
+    <ul class="actions">
+      <li class="action-edit">
+        <a href="#">編集</a>
+      </li>
+      <li class="action-delete">
+        <a href="#">削除</a>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <p class="content"><%= @content %></p>
+  </div>
 </div>
