@@ -1,0 +1,4 @@
+<div class="status span12">
+  <h2 class="user_name"><%= @user?.name %></h2>
+  <div class="content"><%= @content %></div>
+</div>

@@ -4,6 +4,7 @@
   , "private": true
   , "dependencies": {
       "express": "2.5.8"
+    , "underscored": "0.1.5-1"
     , "jade": ">= 0.0.1"
     , "mongodb" : "1.0.0"
     , "mongoose" : "2.5.13"

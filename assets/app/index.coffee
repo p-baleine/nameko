@@ -1,11 +1,11 @@
 require('lib/setup')
 
 Spine = require('spine')
-PostApp = require('controllers/posts')
+StatusApp = require('controllers/statuses')
 
 class App extends Spine.Controller
   constructor: (params) ->
     super
-    post = new PostApp(el: $("#posts"))
+    post = new StatusApp(el: $("#statuses"))
 
 module.exports = App

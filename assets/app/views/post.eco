@@ -1,4 +1,0 @@
-<div class="post span12">
-  <h2 class="user_name"><%= @user_name %></h2>
-  <div class="content"><%= @content %></div>
-</div>

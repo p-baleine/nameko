@@ -3,18 +3,19 @@
  * Module dependencies.
  */
 
-var express = require('express')
-  ,routes = require('./routes')
-  ,loggerOption = require('./lib/loggerHelper').getOption()
-  ,syslog = require('./lib/loggerHelper').syslog
-  ,Resource = require('express-resource');
+var express = require('express'),
+	routes = require('./routes'),
+	loggerOption = require('./lib/loggerHelper').getOption(),
+	syslog = require('./lib/loggerHelper').syslog,
+	Resource = require('express-resource'),
+	models = require('./models');
 
-var everyauth = require('express')
-  , mongoose = require('mongoose')
-  , Schema = mongoose.Schema
-  , mongooseAuth = require('mongoose-auth');
+var everyauth = require('express'),
+	mongoose = require('mongoose'),
+	Schema = mongoose.Schema,
+	mongooseAuth = require('mongoose-auth');
 
-var UserSchema = new Schema({});
+UserSchema = new Schema({});
 UserSchema.plugin(mongooseAuth, {
 	everymodule: {
         everyauth: {
@@ -52,6 +53,9 @@ var app = module.exports = express.createServer();
 app.configure(function(){
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'jade');
+	app.set('m_database', 'nameko');
+	app.set('m_host', 'localhost');
+	app.set('connstring', 'mongodb://' + app.set('m_host') + '/' + app.set('m_database'));
 	app.use(express.logger(loggerOption));
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
@@ -70,6 +74,12 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
+//configure mongoose models
+models.defineModels(mongoose, function() {
+	app.Status = Status = mongoose.model('Status');
+	db = mongoose.connect(app.set('connstring'));
+});
+
 // Routes
 
 app.get('/', function (req, res) {
@@ -85,8 +95,17 @@ app.get('/logout', function (req, res) {
 mongooseAuth.helpExpress(app);
 
 //app.get('/', routes.index);
-app.resource('posts', require('./routes/post'));
-
+app.resource('statuses', require('./routes/status'));
+app.helpers({
+	convertUserOid: function(user) {
+		if (user) {
+			user._id = user._id.toHexString();
+			console.log(user.name instanceof String);
+			console.log(user._id instanceof String);
+		}
+		return user;
+	}
+});
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
