@@ -21,20 +21,21 @@ exports.index = function(req, res) {
 // POST
 exports.create = function(req, res){
 	var body = req.body;
+	var status = new Status();
 	
-	modelPosts.user_name = body.userName;
-	modelPosts.content = body.content;
+	status.user_name = body.userName;
+	status.content = body.content;
 	
-	Status.save(function(err) {
+	status.save(function(err) {
 		if(err) {
-//			res.header()
 			res.send({res: false});
 		}
 		else {
 			res.send({
-				res: true,
-				data: { id: Status.id }
-			})
+				user_name: status.userName,
+				content: status.content,
+				id: status.id
+			}, 201)
 		}
 	});
 };

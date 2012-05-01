@@ -12,10 +12,10 @@ function defineModels(mongoose, fn) {
 	}
 	
 	var Status = new Schema({
-		user_name: {type: String, min: 1, max : 10}
-		,content: String
-		,insertTs: {type: Date, default: Date.now}
-		,updateTs: {type: Date, default: Date.now}
+		user_name: {type: String, min: 1, max : 10}, 
+		content: String, 
+		insertTs: {type: Date, default: Date.now}, 
+		updateTs: {type: Date, default: Date.now}
 	});
 	
 	Status.virtual('id')
