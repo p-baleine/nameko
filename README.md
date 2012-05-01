@@ -33,5 +33,10 @@ README
 
   * REST [https://github.com/visionmedia/express-resource]
   * Mongo [https://github.com/LearnBoost/mongoose]
+  * Mongo公式 [http://mongoosejs.com/]
   * test [http://firn.jp/2011/09/21/nodejs-tdd]
   * commonJS [http://mnmly.github.com/library/coffeescript/05\_applications.html]
+
+  * node-blog [https://github.com/schaermu/node-blog]
+  * node-chat [https://github.com/schaermu/node-chat]
+  * spine.rails3 [https://github.com/maccman/spine.rails3]
