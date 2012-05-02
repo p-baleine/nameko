@@ -22,8 +22,7 @@ exports.create = function(req, res){
 		content = req.body.content,
 		status = new Status();
 
-//	status.user = user._id;
-	status.user = null;
+	status.user = user._id;
 	status.content = content;
 
 	status.save(function(err) {
