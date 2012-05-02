@@ -1,8 +1,8 @@
 <div class="status span12">
   <div>
     <strong class="user_name"><%= @item.user?.name %></strong>
-    <% if @helper.isMine(@item): %>
-      <ul class="actions">
+    <% if @helper.isMyStatus(@item): %>
+      <ul class="actions" style="display:none">
         <li class="action-edit">
           <a href="#">編集</a>
         </li>

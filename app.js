@@ -7,8 +7,8 @@ var express = require('express'),
 	loggerOption = require('./lib/loggerHelper').getOption(),
 	syslog = require('./lib/loggerHelper').syslog,
 	Resource = require('express-resource'),
-        models = require('./models'),
-        mongoose = require('mongoose');
+	models = require('./models'),
+	mongoose = require('mongoose');
 
 mongooseAuth = require('mongoose-auth');
 
