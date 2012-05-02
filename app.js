@@ -7,7 +7,8 @@ var express = require('express'),
 	loggerOption = require('./lib/loggerHelper').getOption(),
 	syslog = require('./lib/loggerHelper').syslog,
 	Resource = require('express-resource'),
-	models = require('./models');
+        models = require('./models'),
+        mongoose = require('mongoose');
 
 mongooseAuth = require('mongoose-auth');
 
@@ -26,7 +27,6 @@ app.configure(function(){
 	app.use(express.methodOverride());
 	app.use(express.cookieParser());
 	app.use(express.session({ secret: 'esoognom'}));
-	app.use(mongooseAuth.middleware());
 	//app.use(app.router);
 	app.use(express.static(__dirname + '/public'));
 });
@@ -44,6 +44,7 @@ models.defineModels(mongoose, function() {
 	app.Status = Status = mongoose.model('Status');
 	app.User = User = mongoose.model('User');
 	db = mongoose.connect(app.set('connstring'));
+	app.use(mongooseAuth.middleware());
 });
 
 // Routes
