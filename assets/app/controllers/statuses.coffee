@@ -3,17 +3,24 @@ Status = require('models/status')
 $ = Spine.$
 
 class Statuses extends Spine.Controller
+    events:
+        'mouseover .status': 'toggleActions'
+
+    elements:
+        '.actions': 'actions'
+
     constructor: ->
         super
 
     render: =>
         @html require('views/status')(@)
 
+    toggleActions: ->
+        @actions.toggle('fast')
+
     helper:
-        isMine: (item) ->
-            console.log(require('index').user)
-            console.log(item.user._id)
-            require('index').user is item.user._id
+        isMyStatus: (item) ->
+            require('index').user is item.user?._id
 
 class StatusApp extends Spine.Controller
     events:

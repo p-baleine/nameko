@@ -1,18 +1,20 @@
-<div class="status span12">
-  <div>
-    <strong class="user_name"><%= @item.user?.name %></strong>
-    <% if @helper.isMine(@item): %>
-      <ul class="actions">
-        <li class="action-edit">
-          <a href="#">編集</a>
-        </li>
-        <li class="action-delete">
-          <a href="#">削除</a>
-        </li>
-      </ul>
-    <% end %>
+<% if @item.user: %>
+  <div class="status span12">
+    <div>
+      <strong class="user_name"><%= @item.user?.name %></strong>
+      <% if @helper.isMyStatus(@item): %>
+        <ul class="actions" style="display:none">
+          <li class="action-edit">
+            <a href="#">編集</a>
+          </li>
+          <li class="action-delete">
+            <a href="#">削除</a>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+    <div>
+      <p class="content"><%= @item.content %></p>
+    </div>
   </div>
-  <div>
-    <p class="content"><%= @item.content %></p>
-  </div>
-</div>
+<% end %>
