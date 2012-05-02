@@ -20,7 +20,7 @@ class Statuses extends Spine.Controller
 
     helper:
         isMyStatus: (item) ->
-            require('index').user is item.user._id
+            require('index').user is item.user?._id
 
 class StatusApp extends Spine.Controller
     events:
