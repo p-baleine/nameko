@@ -1,6 +1,7 @@
 function defineModels(mongoose, fn) {
 	var Schema = mongoose.Schema,
-		ObjectId = Schema.ObjectId;
+		ObjectId = Schema.ObjectId,
+		mongooseAuth = require('mongoose-auth');
 
 	/**
 	 * User model
@@ -29,8 +30,36 @@ function defineModels(mongoose, fn) {
 			return User.findOne({ _id : this.user_id });
 		});
 
+	var UserSchema = new Schema({});
+	UserSchema.plugin(mongooseAuth, {
+		everymodule: {
+			everyauth: {
+				User: function () {
+					return User;
+				}
+			}
+		}
+		, password: {
+			loginWith: 'email'
+			, extraParams: {
+				name: String
+			}
+			, everyauth: {
+				getLoginPath: '/login'
+				, postLoginPath: '/login'
+				, loginView: 'login.jade'
+				, getRegisterPath: '/register'
+				, postRegisterPath: '/register'
+				, registerView: 'register.jade'
+				, loginSuccessRedirect: '/'
+				, registerSuccessRedirect: '/'
+			}
+		}
+	});
+
 	// register mongoose models
 	mongoose.model('Status', Status);
+	mongoose.model('User', UserSchema);
 	fn();
 }
 
