@@ -1,7 +1,6 @@
 function defineModels(mongoose, fn) {
 	var Schema = mongoose.Schema,
-		ObjectId = Schema.ObjectId,
-		mongooseAuth = require('mongoose-auth');
+		ObjectId = Schema.ObjectId;
 
 	/**
 	 * User model

@@ -7,8 +7,9 @@ var express = require('express'),
 	loggerOption = require('./lib/loggerHelper').getOption(),
 	syslog = require('./lib/loggerHelper').syslog,
 	Resource = require('express-resource'),
-	models = require('./models'),
-	mongooseAuth = require('mongoose-auth');
+	models = require('./models');
+
+mongooseAuth = require('mongoose-auth');
 
 var app = module.exports = express.createServer();
 
