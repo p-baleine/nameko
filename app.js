@@ -4,7 +4,6 @@
  */
 
 var express = require('express'),
-	routes = require('./routes'),
 	loggerOption = require('./lib/loggerHelper').getOption(),
 	syslog = require('./lib/loggerHelper').syslog,
 	Resource = require('express-resource'),
