@@ -22,14 +22,15 @@ exports.create = function(req, res){
 		content = req.body.content,
 		status = new Status();
 
-	status.user = user._id;
+//	status.user = user._id;
+	status.user = null;
 	status.content = content;
 
 	status.save(function(err) {
 		var result;
 
 		if(err) {
-			res.send({ msg : err.errors }, 999);
+			res.send({ msg : err.errors }, 400);
 		} else {
 			status = status.toObject();
 			status.user = user;

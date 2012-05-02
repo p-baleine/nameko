@@ -7,8 +7,8 @@ var express = require('express'),
 	loggerOption = require('./lib/loggerHelper').getOption(),
 	syslog = require('./lib/loggerHelper').syslog,
 	Resource = require('express-resource'),
-        models = require('./models'),
-        mongoose = require('mongoose');
+	models = require('./models'),
+	mongoose = require('mongoose');
 
 mongooseAuth = require('mongoose-auth');
 
@@ -55,8 +55,8 @@ app.get('/', function (req, res) {
 });
 
 app.get('/logout', function (req, res) {
-    req.logout();
-    res.redirect('/');
+	req.logout();
+	res.redirect('/');
 });
 
 mongooseAuth.helpExpress(app);
@@ -73,6 +73,7 @@ app.helpers({
 		return user;
 	}
 });
+
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
