@@ -9,41 +9,6 @@ var express = require('express'),
 	Resource = require('express-resource'),
 	models = require('./models');
 
-var mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
-	mongooseAuth = require('mongoose-auth');
-
-UserSchema = new Schema({});
-UserSchema.plugin(mongooseAuth, {
-	everymodule: {
-        everyauth: {
-            User: function () {
-                return User;
-            }
-        }
-    }
-	, password: {
-		loginWith: 'email'
-		, extraParams: {
-            name: String
-        }
-		, everyauth: {
-            getLoginPath: '/login'
-            , postLoginPath: '/login'
-            , loginView: 'login.jade'
-            , getRegisterPath: '/register'
-            , postRegisterPath: '/register'
-            , registerView: 'register.jade'
-            , loginSuccessRedirect: '/'
-            , registerSuccessRedirect: '/'
-        }
-    }
-});
-
-mongoose.model('User', UserSchema);
-mongoose.connect('mongodb://localhost/nameko');
-User = mongoose.model('User');
-
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -75,6 +40,7 @@ app.configure('production', function(){
 //configure mongoose models
 models.defineModels(mongoose, function() {
 	app.Status = Status = mongoose.model('Status');
+	app.User = User = mongoose.model('User');
 	db = mongoose.connect(app.set('connstring'));
 });
 
