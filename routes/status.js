@@ -1,13 +1,15 @@
 
 var	_ = require('underscored')._;
 
-// GET
+/**
+ * GET
+ */
 exports.index = function(req, res) {
 	Status.find({}).populate('user').limit(20).exec(function(err, docs) {
 		if (err) {
-			res.send({ msg: err }, 500);
+			res.send({ msg: err }, 400);
 		} else {
-			res.send(docs, 201);
+			res.send(docs, 200);
 		}
 	});
 };
@@ -16,7 +18,9 @@ exports.index = function(req, res) {
 //  res.send('new forum');
 //};
 
-// POST
+/**
+ * POST
+ */
 exports.create = function(req, res){
 	var user = req.user,
 		content = req.body.content,
@@ -38,17 +42,46 @@ exports.create = function(req, res){
 	});
 };
 
-exports.show = function(req, res){
-  res.send('show forum ' + req.params.forum);
-};
+//exports.show = function(req, res){
+//  res.send('show forum ' + req.params.forum);
+//};
+//
 
-exports.edit = function(req, res){
-  res.send('edit forum ' + req.params.forum);
-};
+///**
+// * 投稿の編集
+// * http://xxxx:3000/Statuses/<_id>/edit
+// */
+//exports.edit = function(req, res){
+////  res.send('edit forum ' + req.params.statuses);
+//	var content = req.body.content,
+//		query = '{ _id: ' + req.params.statuses + ' }';
+//	
+//	Status.update(query, '{ content:' + content + '}', null, function(err) {
+//		if(err) {
+//			res.send({ msg : err.errors }, 400);
+//		} else {
+//			status = status.toObject();
+//			status.user = user;
+//			res.send(status, 200);
+//		}
+//	});
+//};
 
-// PUT
+/**
+ * 投稿の編集(PUT)
+ * http://xxxx:3000/Statuses/<_id>
+ */
 exports.update = function(req, res){
-  res.send('update forum ' + req.params.post);
+	var update = { $set: { content: req.body.content }},
+		query = { _id: req.params.status };
+	
+	Status.update(query, update, null, function(err, num) {
+		if(err) {
+			res.send({ msg : err.errors }, 400);
+		} else {
+			res.send({ content: req.body.content }, 200);
+		}
+	});
 };
 
 // DELETE
